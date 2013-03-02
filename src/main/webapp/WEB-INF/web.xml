@@ -16,9 +16,19 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- <context-param> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value> -->
+	<!-- </context-param> -->
+ 
 	<context-param>
+		<description>
+                 Spring Context Configuration.
+            </description>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+		<!-- spring loads all -->
+		<param-value>
+                classpath*:mvc-dispatcher-servlet.xml</param-value>
 	</context-param>
 
 	<listener>

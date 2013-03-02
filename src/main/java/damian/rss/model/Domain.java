@@ -2,7 +2,7 @@ package damian.rss.model;
 
 import java.util.Date;
 
-public class SampleContent {
+public class Domain {
 
 	String title;
 	String url;

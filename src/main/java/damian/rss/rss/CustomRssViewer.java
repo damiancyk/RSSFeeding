@@ -10,7 +10,7 @@ import com.sun.syndication.feed.rss.Channel;
 import com.sun.syndication.feed.rss.Content;
 import com.sun.syndication.feed.rss.Item;
 
-import damian.rss.model.SampleContent;
+import damian.rss.model.Domain;
 
 public class CustomRssViewer extends AbstractRssFeedView {
 
@@ -31,11 +31,11 @@ public class CustomRssViewer extends AbstractRssFeedView {
 			throws Exception {
 
 		@SuppressWarnings("unchecked")
-		List<SampleContent> listContent = (List<SampleContent>) model
+		List<Domain> listContent = (List<Domain>) model
 				.get("feedContent");
 		List<Item> items = new ArrayList<Item>(listContent.size());
 
-		for (SampleContent tempContent : listContent) {
+		for (Domain tempContent : listContent) {
 
 			Item item = new Item();
 

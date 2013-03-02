@@ -13,5 +13,7 @@
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 
 	<bean id="rssViewer" class="damian.rss.rss.CustomRssViewer" />
+	
+	<bean class="org.springframework.mock.web.MockServletContext"/>
 
 </beans>
