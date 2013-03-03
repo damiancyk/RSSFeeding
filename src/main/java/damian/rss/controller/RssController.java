@@ -21,10 +21,11 @@ public class RssController {
 
 	@RequestMapping(value = "/gielda-domen.rss")
 	public ModelAndView rssPage() {
-
+		
 		try {
 			elementList = rssService
-					.rssParseHtml("http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane");
+					.createDomainList(
+							"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane", 10, 3000);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -2,6 +2,9 @@ package damian.rss.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Domain {
 
 	String title;

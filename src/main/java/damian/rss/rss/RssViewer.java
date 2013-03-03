@@ -12,10 +12,10 @@ import com.sun.syndication.feed.rss.Item;
 
 import damian.rss.model.Domain;
 
-public class CustomRssViewer extends AbstractRssFeedView {
+public class RssViewer extends AbstractRssFeedView {
 
 	@Override
-	protected void buildFeedMetadata(Map<String, Object> model, Channel feed,
+	public void buildFeedMetadata(Map<String, Object> model, Channel feed,
 			HttpServletRequest request) {
 
 		feed.setTitle("Gie³da domen");
@@ -26,13 +26,12 @@ public class CustomRssViewer extends AbstractRssFeedView {
 	}
 
 	@Override
-	protected List<Item> buildFeedItems(Map<String, Object> model,
+	public List<Item> buildFeedItems(Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		@SuppressWarnings("unchecked")
-		List<Domain> listContent = (List<Domain>) model
-				.get("feedContent");
+		List<Domain> listContent = (List<Domain>) model.get("feedContent");
 		List<Item> items = new ArrayList<Item>(listContent.size());
 
 		for (Domain tempContent : listContent) {
