@@ -44,7 +44,6 @@ public class RssViewer extends AbstractRssFeedView {
 
 			item.setTitle(tempContent.getTitle());
 			item.setLink(tempContent.getUrl());
-			item.setPubDate(tempContent.getCreatedDate());
 
 			items.add(item);
 		}

@@ -4,8 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,62 +20,66 @@ public class TestRssConnection {
 	@Autowired
 	private RssService rssService;
 
-	Integer tests;
-	Integer timeout;
+	private static int tests;
+	private static int timeout;
 
-	@Before
-	public void prepare() {
+	@BeforeClass
+	public static void initialize() {
 		tests = 10;
 		timeout = 3000;
 	}
 
-	@Ignore
 	@Test
 	public void testAllOk() throws IOException {
-		assertEquals(null,rssService
-				.createDomainList(
-						"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
-						10, 3000));
+		assertEquals(
+				"testAllOk",
+				tests,
+				rssService
+						.createDomainList(
+								"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
+								tests, timeout).size());
 	}
 
 	@Test
 	public void testLowTimeout() throws IOException {
-		rssService
+		assertNotNull("testLowTimeout", rssService
 				.createDomainList(
 						"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
-						10, 500);
+						tests, 500));
 	}
 
 	@Test
 	public void testZeroDomain() throws IOException {
-		Integer domainCount;
-		Boolean success = (domainCount = rssService
-				.createDomainList(
-						"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
-						0, 3000).size()) != null;
-		System.out.println("\n ===testZeroDomain===\n==domains created: "
-				+ domainCount + ", success:" + success + "");
+		int count = 0;
+		assertEquals(
+				"testZeroDomain",
+				count,
+				rssService
+						.createDomainList(
+								"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
+								count, timeout).size());
 	}
 
 	@Test
 	public void testManyDomain() throws IOException {
-		Integer domainCount;
-		Boolean success = (domainCount = rssService
-				.createDomainList(
-						"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
-						1000, 3000).size()) != null;
-		System.out.println("\n ===testManyDomain===\n==domains created: "
-				+ domainCount + ", success:" + success + "");
+		int count = 1000;
+		assertEquals(
+				"",
+				count,
+				rssService
+						.createDomainList(
+								"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
+								count, timeout).size());
 	}
 
 	@Test
 	public void testInvalidUrlString() throws IOException {
-		rssService.createDomainList("rtdbgrdg", 10, 3000);
+		rssService.createDomainList("rtdbgrdg", tests, timeout);
 	}
 
 	@Test
 	public void testInvalidUrlHost() throws IOException {
-		rssService.createDomainList("http://codility.com/", 10, 3000);
+		rssService.createDomainList("http://codility.com/", tests, timeout);
 	}
 
 	@Test
@@ -84,7 +87,7 @@ public class TestRssConnection {
 		rssService
 				.createDomainList(
 						"http://www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatniooo",
-						10, 3000);
+						tests, timeout);
 	}
 
 	@Test
@@ -92,7 +95,7 @@ public class TestRssConnection {
 		rssService
 				.createDomainList(
 						"www.nazwa.pl/gielda-domen/najciekawsze-domeny/ostatnio-dodane",
-						10, 3000);
+						tests, timeout);
 	}
 
 }

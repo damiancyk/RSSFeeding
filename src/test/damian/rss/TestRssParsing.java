@@ -24,11 +24,11 @@ public class TestRssParsing {
 			SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
-		Method mCreateDomain = rssService.getClass().getDeclaredMethod(
+		Method createDomainMethod = rssService.getClass().getDeclaredMethod(
 				"createDomain", Element.class);
-		mCreateDomain.setAccessible(true);
+		createDomainMethod.setAccessible(true);
 
 		Element element = null;
-		mCreateDomain.invoke(rssService, element);
+		createDomainMethod.invoke(rssService, element);
 	}
 }
